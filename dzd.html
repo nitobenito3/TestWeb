@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <title>Dzimšanas diena</title>
+</head>
+<body>
+
+
+<h1>Gaidot dzimšanas dienu..</h1>
+
+
+<hr>
+
+
+<form>
+
+    
+    <p>Ievadi pilnu datumu, kad Tev būs tuvākā dzimšanas diena</p>
+
+
+    gads:
+    <input type="text" name="gads"><br><br>
+
+   
+    mēnesis:
+    <input type="text" name="menesis"><br><br>
+
+   
+    diena:
+    <input type="text" name="datums"><br><br>
+
+    
+    <input type="button" name="poga" value="Aprēķināt dienu skaitu līdz dzimšanas dienai" onclick="dienas();"><br><br>
+
+    
+    Līdz svētkiem atlikušas 
+    <input type="text" name="dienas">
+    dienas : )) 
+
+</form>
+
+
+<script>
+function dienas() {
+    let gads = document.getElementsByName("gads")[0].value;
+    let menesis = document.getElementsByName("menesis")[0].value;
+    let datums = document.getElementsByName("datums")[0].value;
+
+    let today = new Date();
+    let birthday = new Date(today.getFullYear(), menesis - 1, datums);
+
+    // Ja šī gada dzimšanas diena jau pagājusi
+    if (birthday < today) {
+        birthday.setFullYear(today.getFullYear() + 1);
+    }
+
+    let diff = birthday - today;
+    let dienas = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+    document.getElementsByName("dienas")[0].value = dienas;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mērvienības</title>
+
+<style>
+body {
+    background-image: url("cipari.jpg");
+}
+
+form {
+    font-size: 20px;
+    background-color: rgb(220,220,0);
+    padding: 20px;
+    width: 300px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Informācijas daudzuma mērvienības</h1>
+
+<form>
+
+<p>
+Baiti:
+<input type="number" id="baiti">
+</p>
+
+<p>
+Kilobaiti:
+<input type="number" id="kb">
+</p>
+
+<p>
+Megabaiti:
+<input type="number" id="mb">
+</p>
+
+<input type="button" value="Baiti → KB" onclick="uzKB()">
+<input type="button" value="Baiti → MB" onclick="uzMB()">
+
+</form>
+
+<script>
+function uzKB() {
+    let b = Number(document.getElementById("baiti").value);
+    document.getElementById("kb").value = b / 1024;
+}
+
+function uzMB() {
+    let b = Number(document.getElementById("baiti").value);
+    document.getElementById("mb").value = b / (1024 * 1024);
+}
+</script>
+
+</body>
+</html>
