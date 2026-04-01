@@ -6,49 +6,35 @@
 </head>
 <body>
 
-
-<h1>Gaidot dzimšanas dienu..</h1>
-
-
+<h1>Cik dienas līdz dzimšanas dienai?</h1>
 <hr>
 
-
 <form>
+    <p>Ievadi savu nākamās dzimšanas dienas datumu:</p>
 
-    
-    <p>Ievadi pilnu datumu, kad Tev būs tuvākā dzimšanas diena</p>
+    Gads: <input type="text" name="gads"><br><br>
+    Mēnesis: <input type="text" name="menesis"><br><br>
+    Diena: <input type="text" name="datums"><br><br>
 
+    <input type="button" value="Aprēķināt dienas" onclick="dienas();"><br><br>
 
-    gads:
-    <input type="text" name="gads"><br><br>
-
-   
-    mēnesis:
-    <input type="text" name="menesis"><br><br>
-
-   
-    diena:
-    <input type="text" name="datums"><br><br>
-
-    
-    <input type="button" name="poga" value="Aprēķināt dienu skaitu līdz dzimšanas dienai" onclick="dienas();"><br><br>
-
-    
-    Līdz svētkiem atlikušas 
-    <input type="text" name="dienas">
-    dienas : )) 
-
+    Līdz svētkiem atlikušas <input type="text" name="dienas" readonly> dienas
 </form>
-
 
 <script>
 function dienas() {
-    let gads = document.getElementsByName("gads")[0].value;
-    let menesis = document.getElementsByName("menesis")[0].value;
-    let datums = document.getElementsByName("datums")[0].value;
+    // Iegūst input vērtības un konvertē uz skaitļiem
+    let gads = parseInt(document.getElementsByName("gads")[0].value);
+    let menesis = parseInt(document.getElementsByName("menesis")[0].value);
+    let datums = parseInt(document.getElementsByName("datums")[0].value);
+
+    if (isNaN(gads) || isNaN(menesis) || isNaN(datums)) {
+        alert("Lūdzu, ievadi pareizus skaitļus!");
+        return;
+    }
 
     let today = new Date();
-    let birthday = new Date(today.getFullYear(), menesis - 1, datums);
+    let birthday = new Date(gads, menesis - 1, datums);
 
     // Ja šī gada dzimšanas diena jau pagājusi
     if (birthday < today) {
@@ -56,9 +42,9 @@ function dienas() {
     }
 
     let diff = birthday - today;
-    let dienas = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    let dienasAtlikusas = Math.ceil(diff / (1000 * 60 * 60 * 24));
 
-    document.getElementsByName("dienas")[0].value = dienas;
+    document.getElementsByName("dienas")[0].value = dienasAtlikusas;
 }
 </script>
 
