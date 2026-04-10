@@ -10,9 +10,8 @@
 <hr>
 
 <form>
-    <p>Ievadi savu nākamās dzimšanas dienas datumu:</p>
+    <p>Ievadi savu dzimšanas dienu:</p>
 
-    Gads: <input type="text" name="gads"><br><br>
     Mēnesis: <input type="text" name="menesis"><br><br>
     Diena: <input type="text" name="datums"><br><br>
 
@@ -23,22 +22,22 @@
 
 <script>
 function dienas() {
-    // Iegūst input vērtības un konvertē uz skaitļiem
-    let gads = parseInt(document.getElementsByName("gads")[0].value);
     let menesis = parseInt(document.getElementsByName("menesis")[0].value);
     let datums = parseInt(document.getElementsByName("datums")[0].value);
 
-    if (isNaN(gads) || isNaN(menesis) || isNaN(datums)) {
+    if (isNaN(menesis) || isNaN(datums)) {
         alert("Lūdzu, ievadi pareizus skaitļus!");
         return;
     }
 
     let today = new Date();
-    let birthday = new Date(gads, menesis - 1, datums);
+    let currentYear = today.getFullYear();
 
-    // Ja šī gada dzimšanas diena jau pagājusi
+    let birthday = new Date(currentYear, menesis - 1, datums);
+
+    // Ja dzimšanas diena jau pagājusi šogad
     if (birthday < today) {
-        birthday.setFullYear(today.getFullYear() + 1);
+        birthday.setFullYear(currentYear + 1);
     }
 
     let diff = birthday - today;
@@ -50,3 +49,4 @@ function dienas() {
 
 </body>
 </html>
+
